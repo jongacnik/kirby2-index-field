@@ -48,7 +48,7 @@ class IndexField extends SelectField {
 
     $h2->append($span);
 
-    if ($this->editlinks) {
+    if (isset($this->editlinks)) {
       if ($page = $this->getpage($this->editlinks)) {
         $spanWrap = new Brick('span');
         $spanWrap->addClass('hgroup-options shiv shiv-dark shiv-left');
