@@ -6,6 +6,8 @@ Kirby field which displays pages as a [datalist](https://datatables.net/).
 
 This is useful for navigating large sets of subpages which need filtering and sorting. Allows Kirby to be used a little more like a database.
 
+![Preview](https://github.com/jongacnik/kirby-index-field/blob/master/preview.jpg?raw=true)
+
 ## Usage
 
 ```yaml
