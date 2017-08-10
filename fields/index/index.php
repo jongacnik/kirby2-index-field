@@ -5,7 +5,6 @@ Todo
 
 - Fix Edit/Add links functionality (right now only works for subpages)
 - Rows should link to edit page
-- Option: rows
 - Design
 
 */
@@ -112,6 +111,11 @@ class IndexField extends SelectField {
     }
 
     $table->data('indexfield-data', json_encode($items));
+
+    if (isset($this->rows)) {
+      $table->data('indexfield-rows', $this->rows);      
+    }
+
     $table->addClass('display');
     $table->attr('cellspacing', 0);
     $table->attr('width', '100%');

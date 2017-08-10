@@ -27,7 +27,7 @@ pageindex:
 
 ## Todo
 
-- [ ] Add Option: rows
+- [x] Add Option: rows
 - [ ] Link rows to page Edit
 - [ ] Improve Edit/Add (only works for parent page atm)
 - [ ] Design
