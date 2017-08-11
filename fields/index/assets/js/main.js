@@ -5,9 +5,21 @@ $(document).on('ajaxComplete ready', function () {
       if (!$.fn.DataTable.isDataTable(this)) {
         var data = $(this).data('indexfield-data')
         var rows = $(this).data('indexfield-rows')
-        $(this).DataTable({
+        var table = $(this).DataTable({
           data: data,
-          pageLength: rows
+          pageLength: rows,
+          columnDefs: [
+            {
+              targets: [ 0 ],
+              visible: false,
+              searchable: false
+            }
+          ]
+        })
+
+        $(this).on('click', 'tbody tr', function () {
+          var editurl = table.row(this).data()[0]
+          app.content.open(editurl)
         })
       }
     })

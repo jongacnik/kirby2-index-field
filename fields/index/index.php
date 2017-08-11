@@ -43,6 +43,8 @@ class IndexField extends SelectField {
     $tfoot = new Brick('tfoot');
 
     $tr = new Brick('tr');
+    // insert Edit Header
+    $tr->append(new Brick('th', 'Edit'));
     foreach ($this->columns as $key => $column) {
       $tr->append(new Brick('th', $column));
     }
@@ -57,6 +59,10 @@ class IndexField extends SelectField {
     $items = [];
     foreach ($this->options() as $option) {
       $data = [];
+      // insert edit url
+      $data[] = (string)$option->url('edit');
+
+      // insert columns
       foreach ($this->columns as $key => $column) {
         $data[] = (string)$option->{$key}(); // call method
       }

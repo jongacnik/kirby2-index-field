@@ -1,3 +1,4 @@
 table.dataTable {text-align: left;}
 table.dataTable thead th, table.dataTable thead td,
 table.dataTable tfoot th, table.dataTable tfoot td {padding: 8px 10px}
+table.dataTable tbody tr { cursor: pointer; }
