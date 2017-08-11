@@ -12,7 +12,7 @@ Todo
 class IndexField extends SelectField {
 
   public function __construct() {
-    $this->type    = 'select';
+    $this->type    = 'index';
     $this->options = [];
     $this->icon    = false;
   }
@@ -32,53 +32,8 @@ class IndexField extends SelectField {
     return SubpageIndexFieldOptions::build($this);
   }
 
-  public function label() {
-
-    if(!$this->label) return null;
-
-    $label = new Brick('label');
-    $label->addClass('label');
-    $label->attr('for', $this->id());
-
-    $h2 = new Brick('h2');
-    $h2->addClass('hgroup hgroup-single-line hgroup-compressed cf');
-    $span = new Brick('span', $this->i18n($this->label));
-    $span->addClass('hgroup-title');
-
-    $h2->append($span);
-
-    if (isset($this->editlinks)) {
-      if ($page = $this->getpage($this->editlinks)) {
-        $spanWrap = new Brick('span');
-        $spanWrap->addClass('hgroup-options shiv shiv-dark shiv-left');
-
-        $spanWrapInner = new Brick('span');
-        $spanWrapInner->addClass('hgroup-option-right');
-
-        $editLink = new Brick('a', '<i class="icon icon-left fa fa-pencil"></i><span>Edit</span>');
-        $editLink->attr('href', $page->url('subpages'));
-        $editLink->attr('title', 'Edit');
-
-        $addLink = new Brick('a', '<i class="icon icon-left fa fa-plus-circle"></i><span>Add</span>');
-        $addLink->attr('href', $page->url('add'));
-        $addLink->attr('title', '+');
-        $addLink->data('shortcut', '+');
-        $addLink->data('modal', 'true');
-
-        $spanWrapInner->append($editLink);
-        $spanWrapInner->append($addLink);
-        $spanWrap->append($spanWrapInner);
-        $h2->append($spanWrap); 
-      }
-    }
-
-    $label->append($h2);
-
-    return $label;
-  }
-
   public function input () {
-    $this->columns = $this->columns ? $this->columns : ['title' => 'Title'];
+    $this->columns = isset($this->columns) ? $this->columns : ['title' => 'Title'];
 
     // Create table structure
 
@@ -103,9 +58,7 @@ class IndexField extends SelectField {
     foreach ($this->options() as $option) {
       $data = [];
       foreach ($this->columns as $key => $column) {
-        // check to see if this is kosher
         $data[] = (string)$option->{$key}(); // call method
-        // eventually try to grab from array if using API
       }
       $items[] = $data;
     }
@@ -129,18 +82,56 @@ class IndexField extends SelectField {
     return $element;
   }
 
-  public function getpage($uri) {
+  public function splinks () {
+    if (in_array($this->options, ['children', 'visibleChildren', 'invisibleChildren'])) {
+      $spanWrap = new Brick('span');
+      $spanWrap->addClass('hgroup-options shiv shiv-dark shiv-left');
 
-    if ($uri == 1) {
-      $page = $this->page;
-    } else if($uri == '/') {
-      $page = site();
-    } else {
-      $page = page($uri);
+      $spanWrapInner = new Brick('span');
+      $spanWrapInner->addClass('hgroup-option-right');
+
+      $editLink = new Brick('a', '<i class="icon icon-left fa fa-pencil"></i><span>Edit</span>');
+      $editLink->attr('href', $this->page->url('subpages'));
+      $editLink->attr('title', 'Edit');
+
+      $addLink = new Brick('a', '<i class="icon icon-left fa fa-plus-circle"></i><span>Add</span>');
+      $addLink->attr('href', $this->page->url('add'));
+      $addLink->attr('title', '+');
+      $addLink->data('shortcut', '+');
+      $addLink->data('modal', 'true');
+
+      $spanWrapInner->append($editLink);
+      $spanWrapInner->append($addLink);
+      $spanWrap->append($spanWrapInner);
+      
+      return $spanWrap; 
+    }
+  }
+
+  public function label() {
+    if(!$this->label) return null;
+
+    $label = new Brick('label');
+    $label->addClass('label');
+    $label->attr('for', $this->id());
+
+    $h2 = new Brick('h2');
+    $h2->addClass('hgroup hgroup-single-line hgroup-compressed cf');
+    $span = new Brick('span', $this->i18n($this->label));
+    $span->addClass('hgroup-title');
+
+    $h2->append($span);
+
+    // Edit/Add links if index of subpages
+    if (isset($this->options) && $splinks = $this->splinks()) {
+      if (!(isset($this->addedit) && !$this->addedit)) {
+        $h2->append($splinks); 
+      }
     }
 
-    return $page;
+    $label->append($h2);
 
+    return $label;
   }
 
 }
