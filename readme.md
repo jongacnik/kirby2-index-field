@@ -1,12 +1,12 @@
 # Kirby Index Field
 
-**⚠️ Work in progress...**
+Kirby field which displays pages (or files) as a [datalist](https://datatables.net/).
 
-Kirby field which displays pages as a [datalist](https://datatables.net/).
-
-This is useful for navigating large sets of subpages with filtering and sorting. Enables Kirby to be used a little more like a database. Pairs nicely with [kirby-hidebar-field](https://github.com/jongacnik/kirby-hidebar-field).
+This is useful for navigating large sets of pages with filtering and sorting. Enables Kirby to be used a little more like a database.
 
 ![Preview](https://github.com/jongacnik/kirby-index-field/blob/master/preview.png?raw=true)
+
+<small><em>Sidebar hidden using <a href="https://github.com/jongacnik/kirby-hidebar-fieldd">kirby-hidebar-field</a></em></small>
 
 ## Examples
 
