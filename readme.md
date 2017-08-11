@@ -114,6 +114,5 @@ These links appear on an index of subpages so you are able to [hide the subpage]
 
 ## Todo
 
-- [ ] Link rows to page Edit
 - [ ] Row templates for things like images
 - [ ] Match Index design to Kirby UI
