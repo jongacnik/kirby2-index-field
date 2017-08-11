@@ -6,7 +6,7 @@ Kirby field which displays pages as a [datalist](https://datatables.net/).
 
 This is useful for navigating large sets of subpages with filtering and sorting. Enables Kirby to be used a little more like a database. Pairs nicely with [kirby-hidebar-field](https://github.com/jongacnik/kirby-hidebar-field).
 
-![Preview](https://github.com/jongacnik/kirby-index-field/blob/master/preview.jpg?raw=true)
+![Preview](https://github.com/jongacnik/kirby-index-field/blob/master/preview.png?raw=true)
 
 ## Examples
 
@@ -115,4 +115,3 @@ These links appear on an index of subpages so you are able to [hide the subpage]
 ## Todo
 
 - [ ] Row templates for things like images
-- [ ] Match Index design to Kirby UI
