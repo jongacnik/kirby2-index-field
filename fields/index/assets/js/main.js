@@ -24,4 +24,4 @@ $(document).on('ajaxComplete ready', function () {
       }
     })
   }
-})
+});
