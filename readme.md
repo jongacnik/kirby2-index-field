@@ -92,6 +92,24 @@ title: Title
 
 Will show a column labeled **Title** and the result of `$page->title()` for each item in the index.
 
+#### Snippet Columns
+
+For more advanced output, you can also specify the contents of a row using a snippet, like the **Modified** column below:
+
+```yaml
+columns:
+  title: Title
+  modified:
+    label: Modified
+    snippet: index/modified
+```
+
+```php
+<?php echo $entry->modified('d/m/Y H:i') ?>
+```
+
+Use the `$entry` variable in your snippet to access the page or file object.
+
 ### Rows
 
 Set the initial number of rows in the datalist by using the `rows` parameter:
@@ -109,7 +127,3 @@ addedit: false
 ```
 
 These links appear on an index of subpages so you are able to [hide the subpage](https://getkirby.com/docs/panel/blueprints/subpages-settings#hide-subpages) list in the left column of the panel, or [remove the left column](https://github.com/jongacnik/kirby-hidebar-field) entirely.
-
-## Todo
-
-- [ ] Row templates for things like images

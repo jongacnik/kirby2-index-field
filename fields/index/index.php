@@ -34,6 +34,14 @@ class IndexField extends SelectField {
 
   public function input () {
     $this->columns = isset($this->columns) ? $this->columns : ['title' => 'Title'];
+    
+    // Get column labels
+    $labels = [];
+    foreach ($this->columns as $key => $column) {
+      $labels[] = is_array($column)
+        ? $column['label']
+        : $column;
+    }
 
     // Create table structure
 
@@ -45,8 +53,8 @@ class IndexField extends SelectField {
     $tr = new Brick('tr');
     // insert Edit Header
     $tr->append(new Brick('th', 'Edit'));
-    foreach ($this->columns as $key => $column) {
-      $tr->append(new Brick('th', $column));
+    foreach ($labels as $label) {
+      $tr->append(new Brick('th', $label));
     }
 
     $thead->append($tr);
@@ -64,7 +72,16 @@ class IndexField extends SelectField {
 
       // insert columns
       foreach ($this->columns as $key => $column) {
-        $data[] = (string)$option->{$key}(); // call method
+        if (is_array($column)) {
+          if (isset($column['field'])) {
+            $data[] = (string)$option->{$column['field']}();
+          } else if (isset($column['snippet'])) {
+            $data[] = (string)$this->entry($option, $column['snippet']);
+          }
+        } else {
+          // use key to call method
+          $data[] = (string)$option->{$key}();
+        }
       }
       $items[] = $data;
     }
@@ -81,6 +98,13 @@ class IndexField extends SelectField {
     
 		return $table;
 	}
+
+  public function entry ($entry, $snippet) {
+    return tpl::load(kirby()->roots()->snippets() . DS . $snippet . '.php', array(
+      'entry' => $entry,
+      'field' => $this
+    ));
+  }
 
   public function element() {
     $element = parent::element();
