@@ -164,6 +164,10 @@ class IndexField extends SelectField {
     return $label;
   }
 
+  public function validate () {
+    return true;
+  }
+
 }
 
 /**
