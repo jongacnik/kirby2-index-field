@@ -1,6 +1,6 @@
 # Kirby Index Field
 
-Kirby field which displays pages (or files) as a [datalist](https://datatables.net/).
+Kirby field which displays pages (or files) as a [datatable](https://datatables.net/).
 
 This is useful for navigating large sets of pages with filtering and sorting. Enables Kirby to be used a little more like a database. Pairs nicely with [kirby-hidebar-field](https://github.com/jongacnik/kirby-hidebar-field).
 
@@ -114,7 +114,7 @@ Use the `$entry` variable in your snippet to access the page or file object.
 
 ### Rows
 
-Set the initial number of rows in the datalist by using the `rows` parameter:
+Set the initial number of rows in the datatable by using the `rows` parameter:
 
 ```yaml
 rows: 25
