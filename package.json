@@ -6,7 +6,7 @@
       "type": "git",
       "url": "https://github.com/jongacnik/kirby-index-field"
    },
-   "version": "1.0.2",
+   "version": "1.0.3",
    "type": "kirby-plugin",
    "license": "MIT"
 }
