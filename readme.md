@@ -92,6 +92,8 @@ title: Title
 
 Will show a column labeled **Title** and the result of `$page->title()` for each item in the index.
 
+The first column determines the initial sort.
+
 #### Snippet Values
 
 For more advanced output, you can also specify the contents of a row cell using a snippet, like in **Modified** below:

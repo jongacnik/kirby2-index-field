@@ -10,7 +10,7 @@ $(document).on('ajaxComplete ready', function () {
           pageLength: rows,
           columnDefs: [
             {
-              targets: [ 0 ],
+              targets: [ -1 ],
               visible: false,
               searchable: false
             }
@@ -18,7 +18,7 @@ $(document).on('ajaxComplete ready', function () {
         })
 
         $(this).on('click', 'tbody tr', function () {
-          var editurl = table.row(this).data()[0]
+          var editurl = table.row(this).data().slice(-1)[0] 
           app.content.open(editurl)
         })
       }
