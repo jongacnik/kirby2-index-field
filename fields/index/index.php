@@ -39,7 +39,7 @@ class IndexField extends BaseField {
             <a href="{$this->page->url('subpages')}" title="Edit">
               <i class="icon icon-left fa fa-pencil"></i><span>Edit</span>
             </a>
-            <a href="{$this->page->url('add')}" title="+" shortcut="+" modal="true">
+            <a href="{$this->page->url('add')}" title="+" shortcut="+" data-modal="true">
               <i class="icon icon-left fa fa-plus-circle"></i><span>Add</span>
             </a>
           </span>
