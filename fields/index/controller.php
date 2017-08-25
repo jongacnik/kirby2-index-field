@@ -8,7 +8,7 @@ class IndexFieldController extends Kirby\Panel\Controllers\Field {
   public function list () {
     $field = $this->field();
     $data = Kirby\Panel\Form\IndexFieldOptions::build($field);
-    if($field->filter()) {
+    if ($field->filter()) {
       $data = call_user_func($field->filter(), $data);
     } 
     return response::json($data);

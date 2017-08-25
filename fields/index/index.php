@@ -13,7 +13,7 @@ class IndexField extends BaseField {
     ]
   ];
 
-  public function __construct() {
+  public function __construct () {
     $this->rows = 10;
     $this->order = 'asc';
     $this->type = 'index';
@@ -48,8 +48,8 @@ HTML;
     }
   }
 
-  public function label() {
-    if(!$this->label) return null;
+  public function label () {
+    if (!$this->label) return null;
     
     $subpagelinks = '';
     if (isset($this->options) && $subpagelinks = $this->subpagelinks()) {
