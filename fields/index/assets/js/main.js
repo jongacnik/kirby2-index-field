@@ -44,6 +44,7 @@
                * 2. Check for key under meta object (file fields)
                * 3. Use name as fallback for title on files
                * 4. Check for key under top level object
+               * 5. Return empty string if no value
                */
 
               var item = i.content && i.content[key]
@@ -53,6 +54,8 @@
                 : key === 'title' && !i.title && i.name
                 ? i.name
                 : i[key]
+                ? i[key]
+                : ''
 
               result.push(item)
             })
