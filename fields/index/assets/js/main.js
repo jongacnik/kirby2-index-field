@@ -20,11 +20,10 @@
     table.append(tableHead(headers, $('<thead></thead>')))
     table.append(tableHead(headers, $('<tfoot></tfoot>')))
 
-    var colCount = Object.keys(columns).length
     
-    var defs =  [
-      { orderable: false, targets: [ colCount ] }
-    ]
+    
+    var defs = columnDefs(columns)
+    
 
     var table = table.DataTable({
       columnDefs: defs,
@@ -95,6 +94,32 @@
       $row.append($('<th width="18"></th>'))
 
       return $element.append($row);
+    }
+
+    function columnDefs () {
+      // column defs handle custom column widths and classnames
+      var colCount = Object.keys(columns).length
+    
+      var defs = [
+        { orderable: false, targets: [ colCount ] }
+      ]
+
+      Object.keys(columns).forEach(function (key, i) {
+        if (columns[key].width) {
+          defs.push({
+            width: columns[key].width,
+            targets: i
+          })
+        }
+        if (columns[key].class) {
+          defs.push({
+            className: columns[key].class,
+            targets: i
+          })
+        }
+      })
+
+      return defs
     }
 
   };
