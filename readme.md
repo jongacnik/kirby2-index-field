@@ -2,7 +2,7 @@
 
 Kirby field which displays pages (or files) as a [datatable](https://datatables.net/).
 
-This is useful for navigating large sets of pages with filtering and sorting. Enables Kirby to be used a little more like a database. Pairs nicely with [kirby-hidebar-field](https://github.com/jongacnik/kirby-hidebar-field).
+This is useful for navigating large-ish sets of items with filtering and sorting. Enables Kirby to be used a little more like a database. Pairs nicely with [kirby-hidebar-field](https://github.com/jongacnik/kirby-hidebar-field).
 
 ![Preview](https://github.com/jongacnik/kirby-index-field/blob/master/preview.png?raw=true)
 
@@ -24,11 +24,9 @@ pageindex:
   label: Items
   type: index
   options: files
-  columns:
-    name: Name
 ```
 
-### Options
+## Options
 
 Similar to Kirby's [Select Field](https://getkirby.com/docs/cheatsheet/panel-fields/select), you use the `options` parameter to specify what the index should be populated with. All Dynamic Options from the Select Field can be used:
 
@@ -53,9 +51,9 @@ audio | Index of all audio files of the page
 code | Index of all code files of the page
 archives | Index of all archives of the page
 
-### Query
+## Query
 
-The Index Field even supports a version of the Select Field `query` parameter to generate more complex indexes of pages/files:
+The Index Field also supports a version of the Select Field `query` parameter to generate more complex indexes of pages/files:
 
 ```yaml
 pageindex:
@@ -65,13 +63,14 @@ pageindex:
   query:
     page: blog
     fetch: children
+    template: article
 ```
 
 Where `page` is the [uid](https://getkirby.com/docs/cheatsheet/page/uid) of the desired page, and `fetch` is one of the [`options`](#options) above.
 
-### Columns
+## Columns
 
-By default, only a Title column (showing a pages title) will be shown. You specify what columns should appear using the `columns` parameter:
+By default, only a Title column (showing a page `title` or file `filename`) will be shown. You specify what columns should appear using the `columns` parameter. The first column determines the initial sort.
 
 ```yaml
 pageindex:
@@ -84,43 +83,92 @@ pageindex:
     uid: Slug
 ```
 
-The key maps directly to [page](https://getkirby.com/docs/cheatsheet#page) and [file](https://getkirby.com/docs/cheatsheet#file) methods. The value will be the title of the column. For example: 
+The key specifies which property of the [page/file json](https://getkirby.com/docs/cheatsheet/page/to-json) should be fetched. The value specifies the title of the column. The following example will show a column labeled **Title** and the property `title` from each item's json representation:
 
 ```yaml
 title: Title
 ```
 
-Will show a column labeled **Title** and the result of `$page->title()` for each item in the index.
+### Column Options:
 
-The first column determines the initial sort.
+You can set a few options on a per column basis.
 
-#### Snippet Values
-
-For more advanced output, you can also specify the contents of a row cell using a snippet, like in **Modified** below:
+#### Column Width
 
 ```yaml
 columns:
-  title: Title
-  modified:
-    label: Modified
-    snippet: index/modified
+  title:
+    label: Title
+    width: 100
+  uid: Slug
 ```
 
+#### Column Class
+
+```yaml
+columns:
+  title:
+    label: Title
+    class: classname
+  uid: Slug
+```
+
+#### Column Visibility
+
+```yaml
+columns:
+  title:
+    label: Title
+    visible: false
+  uid: Slug
+```
+
+## Filter Data
+
+A custom filter can be applied to the data before it is put out as a json response. This is perfect if you need to modify some of the data for presentation, change columns, etc.
+
+Create a simple plugin `site/plugins/mydatafilters/mydatafilters.php`:
 ```php
-<?php echo $entry->modified('d/m/Y H:i') ?>
+<?php
+
+class MyDataFilters {
+  static function myfilterfunc($data) {
+    // filter data here
+    return $data;
+  }
+}
 ```
 
-Use the `$entry` variable in your snippet to access the page or file object.
+Update field definition:
+```yaml
+pageindex:
+  label: Items
+  type: index
+  options: children
+  filter: MyDataFilters::myfilterfunc
+  columns:
+    title: Title
+    date: Date
+    uid: Slug
+```
 
-### Rows
+## Rows
 
-Set the initial number of rows in the datatable by using the `rows` parameter:
+Set the initial number of rows in the datatable:
 
 ```yaml
 rows: 25
 ```
 
-### Add/Edit Links
+## Order
+
+Set the initial sort order of the first column:
+
+```yaml
+order: desc
+```
+
+## Add/Edit Links
 
 When showing an index of subpages (`children`, `visibleChildren` or `invisibleChildren`), Edit/Add links will appear next to the field label. You can disable these links using the `addedit` parameter:
 
