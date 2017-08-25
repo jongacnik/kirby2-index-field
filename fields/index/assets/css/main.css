@@ -112,3 +112,11 @@
 [data-field="indexfield"] .dataTable .btn:hover {
   color: #8dae28;
 }
+
+[data-field="indexfield"] td.no-padding-cell {
+  padding: 0;
+}
+
+[data-field="indexfield"] td.center-cell {
+  text-align: center;
+}
