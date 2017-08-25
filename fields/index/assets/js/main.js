@@ -1,6 +1,6 @@
 (function($) {
 
-  var Indexfield = function(el) {
+  var Indexfield = function (el) {
 
     var element = $(el);
     var table = element.find('table')
@@ -20,11 +20,8 @@
     table.append(tableHead(headers, $('<thead></thead>')))
     table.append(tableHead(headers, $('<tfoot></tfoot>')))
 
-    
-    
     var defs = columnDefs(columns)
     
-
     var table = table.DataTable({
       columnDefs: defs,
       pageLength: rows,
@@ -130,11 +127,11 @@
 
   };
 
-  $.fn.indexfield = function() {
+  $.fn.indexfield = function () {
 
-    return this.each(function() {
+    return this.each(function () {
 
-      if($(this).data('indexfield')) {
+      if ($(this).data('indexfield')) {
         return $(this);
       } else {
         var indexfield = new Indexfield(this);
