@@ -54,7 +54,6 @@ class IndexFieldOptions {
     $defaults = array(
       'page'     => $this->field->page ? ($this->field->page->isSite() ? '/' : $this->field->page->id()) : '',
       'fetch'    => 'children',
-      'flip'     => false,
       'template' => false
     );
 
@@ -76,10 +75,6 @@ class IndexFieldOptions {
       $items = $items->filter(function($item) use($query) {
         return in_array(str::lower($item->intendedTemplate()), array_map('str::lower', (array)$query['template']));
       });
-    }
-
-    if($query['flip']) {
-      $items = $items->flip();
     }
 
     // set active page (for use within format)
