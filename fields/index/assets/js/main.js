@@ -117,6 +117,12 @@
             targets: i
           })
         }
+        if ($.isPlainObject(columns[key]) && columns[key].hasOwnProperty('visible')) {
+          defs.push({
+            visible: columns[key].visible,
+            targets: i
+          })
+        }
       })
 
       return defs
