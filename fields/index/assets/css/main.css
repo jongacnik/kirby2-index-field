@@ -52,6 +52,10 @@
   border-right: 1px solid #ddd;
 }
 
+[data-field="indexfield"] table.dataTable tbody td:last-child {
+  text-align: center;
+}
+
 [data-field="indexfield"] .dataTables_filter {
   margin-bottom: 1em;
 }
@@ -103,4 +107,8 @@
 [data-field="indexfield"] .dataTables_filter input[type="search"]:focus {
   outline: 0;
   border-color: #8dae28;
+}
+
+[data-field="indexfield"] .dataTable .btn:hover {
+  color: #8dae28;
 }
