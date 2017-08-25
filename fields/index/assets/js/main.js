@@ -120,6 +120,12 @@
             targets: i
           })
         }
+        if ($.isPlainObject(columns[key]) && columns[key].hasOwnProperty('sort')) {
+          defs.push({
+            orderable: columns[key].sort,
+            targets: i
+          })
+        }
       })
 
       return defs

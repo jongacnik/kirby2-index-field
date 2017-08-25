@@ -113,6 +113,16 @@ columns:
   uid: Slug
 ```
 
+#### Column Sort-ability
+
+```yaml
+columns:
+  title:
+    label: Title
+    sort: false
+  uid: Slug
+```
+
 #### Column Visibility
 
 ```yaml
