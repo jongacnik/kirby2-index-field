@@ -5,7 +5,7 @@ require __DIR__ . DS . 'options.php';
 class IndexFieldController extends Kirby\Panel\Controllers\Field {
 
   // get entries for the current table
-  public function list () {
+  public function list_entries () {
     $field = $this->field();
     $data = Kirby\Panel\Form\IndexFieldOptions::build($field);
     if ($field->filter()) {

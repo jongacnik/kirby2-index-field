@@ -26,7 +26,7 @@ class IndexField extends BaseField {
       array(
         'pattern' => 'list',
         'method'  => 'get',
-        'action'  => 'list'
+        'action'  => 'list_entries'
       )
     );
   }
