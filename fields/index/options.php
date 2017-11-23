@@ -189,7 +189,7 @@ class IndexFieldOptions {
       if (isset($item['filename'])) {
         $item['panelurl'] = panel()->urls()->index() . '/pages/' . $this->activepage->uri() . '/file/' . $item['filename'] . '/edit';
       } else {
-        $item['panelurl'] = panel()->urls()->index() . '/pages/' . $item['uri'] . '/edit';
+        $item['panelurl'] = panel()->urls()->index() . '/pages/' . $item['id'] . '/edit';
       }
       return $item;
     }, $this->options->toArray());
