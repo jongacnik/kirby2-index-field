@@ -1,0 +1,12 @@
+{
+	"name": "kirby-index-field",
+	"description": "Kirby field for displaying pages as a datalist",
+	"author": "Jon Gacnik <https://github.com/jongacnik>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jongacnik/kirby-index-field"
+	},
+	"version": "2.1.0",
+	"type": "kirby-plugin",
+	"license": "MIT"
+}
