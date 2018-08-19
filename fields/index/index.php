@@ -33,7 +33,6 @@ class IndexField extends BaseField {
 
   public function subpagelinks () {
     if (in_array($this->options, ['children', 'visibleChildren', 'invisibleChildren'])) {
-      $addLinks = true;
       $hrefEdit = $this->page->url('subpages');
       $hrefAdd = $this->page->url('add');
       $addAttribute = 'data-modal="true"';
