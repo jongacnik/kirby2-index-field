@@ -33,13 +33,24 @@ class IndexField extends BaseField {
 
   public function subpagelinks () {
     if (in_array($this->options, ['children', 'visibleChildren', 'invisibleChildren'])) {
+      $addLinks = true;
+      $hrefEdit = $this->page->url('subpages');
+      $hrefAdd = $this->page->url('add');
+      $addAttribute = 'data-modal="true"';
+    } else if (in_array($this->options, ['files', 'images', 'documents', 'videos', 'audio', 'code', 'archives'])) {
+      $hrefEdit = $this->page->url('files');
+      $hrefAdd = '#upload';
+      $addAttribute = 'data-upload';
+    }
+
+    if (is_string($addAttribute)) {
       return <<<HTML
         <span class="hgroup-options shiv shiv-dark shiv-left">
           <span class="hgroup-option-right">
-            <a href="{$this->page->url('subpages')}" title="Edit">
+            <a href="{$hrefEdit}" title="Edit">
               <i class="icon icon-left fa fa-pencil"></i><span>Edit</span>
             </a>
-            <a href="{$this->page->url('add')}" title="+" shortcut="+" data-modal="true">
+            <a href="{$hrefAdd}" title="+" shortcut="+" {$addAttribute}>
               <i class="icon icon-left fa fa-plus-circle"></i><span>Add</span>
             </a>
           </span>
