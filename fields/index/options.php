@@ -187,9 +187,9 @@ class IndexFieldOptions {
     // add panel edit url to each item
     return array_map(function ($item) {
       if (isset($item['filename'])) {
-        $item['panelurl'] = panel()->urls()->index() . '/pages/' . $this->activepage->uri() . '/file/' . $item['filename'] . '/edit';
+        $item['panelurl'] = $this->activepage->file($item['filename'])->url('edit');
       } else {
-        $item['panelurl'] = panel()->urls()->index() . '/pages/' . $item['id'] . '/edit';
+        $item['panelurl'] = panel()->page($item['id'])->url('edit');
       }
       return $item;
     }, $this->options->toArray());
