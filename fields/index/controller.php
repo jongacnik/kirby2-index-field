@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . DS . 'options.php';
+require_once __DIR__ . DS . 'options.php';
 
 class IndexFieldController extends Kirby\Panel\Controllers\Field {
 

@@ -195,4 +195,8 @@ class IndexFieldOptions {
     }, $this->options->toArray());
   }
 
+  public function activePage () {
+    return $this->activepage;
+  }
+
 }

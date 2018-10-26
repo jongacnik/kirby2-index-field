@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . DS . 'options.php';
+
 class IndexField extends BaseField {
 
   static public $assets = [
@@ -40,6 +42,24 @@ class IndexField extends BaseField {
       $hrefEdit = $this->page->url('files');
       $hrefAdd = '#upload';
       $addAttribute = 'data-upload';
+    } else if (in_array($this->options, ['query']) && array_key_exists('fetch', $this->query) && in_array($this->query['fetch'], ['children', 'visibleChildren', 'invisibleChildren'])) {
+      if (array_key_exists('page', $this->query)) {
+        $options = new Kirby\Panel\Form\IndexFieldOptions($this);
+        $page = $options->activePage();
+      } else {
+        $page = $this->page;
+      }
+
+      if($page){
+        $hrefEdit = $page->url('subpages');
+        $hrefAdd = $page->url('add');
+        $addAttribute = 'data-modal="true"';
+      } else {
+        $addAttribute = 0;
+      }
+      
+    } else {
+      $addAttribute = 0;
     }
 
     if (is_string($addAttribute)) {
